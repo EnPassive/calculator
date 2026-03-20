@@ -13,6 +13,7 @@
             --danger-red: #dc2626;
             --warning-gold: #f59e0b;
             --bg-gray: #f8fafc;
+            --vocus-sand: #f4f1ea;
         }
 
         body { 
@@ -42,7 +43,6 @@
 
         .header h2 { color: var(--primary-blue); margin: 0; font-size: 28px; letter-spacing: 1px; }
 
-        /* 輸入區域卡片化 */
         .input-group { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
@@ -86,9 +86,7 @@
         }
 
         button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(30, 58, 138, 0.3); }
-        button:active { transform: translateY(0); }
 
-        /* 診斷報告優化 */
         #summaryBox { 
             display: none; 
             background-color: #fff; 
@@ -103,21 +101,21 @@
         .success-text { color: var(--success-green); font-weight: bold; font-size: 1.1em; }
         .warning-text { color: var(--danger-red); font-weight: bold; font-size: 1.1em; }
 
-        /* YouTube 引流按鈕 */
-        .yt-btn {
+        /* 引流按鈕優化為方格子風格 */
+        .vocus-btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 12px 30px;
-            background-color: #ff0000;
-            color: white;
+            padding: 14px 35px;
+            background-color: #000000; /* 方格子主色調 */
+            color: #ffffff;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-weight: bold;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
+            border: 1px solid #000;
         }
-        .yt-btn:hover { opacity: 0.9; }
+        .vocus-btn:hover { background-color: #333333; transform: scale(1.02); }
 
-        /* 圖表響應式 */
         .charts-wrapper { display: flex; flex-wrap: wrap; gap: 25px; margin-bottom: 35px; }
         .chart-container { 
             flex: 1; 
@@ -130,15 +128,14 @@
             padding: 20px; 
         }
 
-        /* 表格優化 */
         .table-container { overflow-x: auto; margin-top: 15px; }
         table { width: 100%; border-collapse: collapse; min-width: 800px; }
         th, td { border: 1px solid #e2e8f0; padding: 14px; text-align: center; }
-        th { background-color: var(--primary-blue); color: white; font-weight: 500; }
+        th { background-color: var(--primary-blue); color: white; }
         tr:nth-child(even) { background-color: var(--bg-gray); }
 
-        .badge-target { background-color: #fef3c7; color: #d97706; padding: 5px 10px; border-radius: 6px; font-weight: bold; font-size: 13px; }
-        .badge-freedom { background-color: #dcfce7; color: #15803d; padding: 5px 10px; border-radius: 6px; font-weight: bold; font-size: 13px; }
+        .badge-target { background-color: #fef3c7; color: #d97706; padding: 5px 10px; border-radius: 6px; font-weight: bold; }
+        .badge-freedom { background-color: #dcfce7; color: #15803d; padding: 5px 10px; border-radius: 6px; font-weight: bold; }
 
         /* 🛡️ 懶人防盜 */
         * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
@@ -210,7 +207,6 @@
             let achievedTargetYear = -1, achievedFreedomYear = -1;
 
             for (let i = 1; i <= years; i++) {
-                // 每月月初投入複利邏輯
                 for (let m = 1; m <= 12; m++) {
                     cumulativePrincipal += monthlyInvest;
                     cumulativeTotal = (cumulativeTotal + monthlyInvest) * (1 + monthlyReturn);
@@ -249,11 +245,11 @@
             document.getElementById('summaryBox').innerHTML = `
                 ${achievedTargetYear !== -1 ? `🎯 <strong>目標達成：</strong> 預計在 <span class="success-text">第 ${achievedTargetYear} 年</span> 達成每月被動收入目標！<br>` : '🎯 <strong>目標狀態：</strong> 目前條件在試算年限內尚未達標。<br>'}
                 ${achievedFreedomYear !== -1 ? `🕊️ <strong>財務自由：</strong> 您的被動收入在 <span class="success-text">第 ${achievedFreedomYear} 年</span> 正式超越通膨後生活費。<br>` : '🕊️ <strong>自由狀態：</strong> 目前被動收入仍不足以覆蓋通膨後的生活開支。<br>'}
-                <hr style="border:0; border-top:1px dashed #ccc; margin:15px 0;">
+                <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
                 ⚠️ <strong>CFO 真實購買力警訊：</strong><br>
                 第 ${years} 年末的帳面月收入雖為 ${passiveIncomeData[passiveIncomeData.length-1]} 萬，但其真實價值僅相當於現在的 <strong><span class="warning-text">${realPower.toFixed(2)} 萬</span></strong>。<br>
                 <div style="text-align:center;">
-                    <a href="https://www.youtube.com/@enpassive" target="_blank" class="yt-btn">▶ 訂閱 En Passive 了解更多實戰策略</a>
+                    <a href="https://vocus.cc/salon/EnPassive" target="_blank" class="vocus-btn">📖 前往 En Passive 方格子沙龍：看實戰案例</a>
                 </div>
             `;
 
