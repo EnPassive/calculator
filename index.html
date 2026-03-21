@@ -101,12 +101,11 @@
         .success-text { color: var(--success-green); font-weight: bold; font-size: 1.1em; }
         .warning-text { color: var(--danger-red); font-weight: bold; font-size: 1.1em; }
 
-        /* 引流按鈕優化為方格子風格 */
         .vocus-btn {
             display: inline-block;
             margin-top: 20px;
             padding: 14px 35px;
-            background-color: #000000; /* 方格子主色調 */
+            background-color: #000000; 
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
@@ -140,6 +139,9 @@
         /* 🛡️ 懶人防盜 */
         * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
         input { -webkit-user-select: text; user-select: text; }
+
+        /* Grok 轉換漏斗區塊隱藏控制 */
+        #grokFunnelBox { display: none; }
     </style>
 </head>
 <body>
@@ -178,6 +180,25 @@
                 <tbody></tbody>
             </table>
         </div>
+
+        <div id="grokFunnelBox" style="margin: 40px 0 20px 0; padding: 30px; border-radius: 12px; background: linear-gradient(135deg, #fff3cd, #ffeaa7); border: 2px solid #ff9800; text-align: center; box-shadow: 0 8px 20px rgba(255, 152, 0, 0.15);">
+            <h3 style="color: #d32f2f; font-size: 24px; margin-top: 0;">😱 你算完是不是也嚇到了？<br>單靠存錢，多數人要到 65 歲甚至更晚才能退休…</h3>
+            
+            <div style="font-size: 18px; margin: 20px auto; color: #424242; line-height: 1.8; text-align: left; display: inline-block;">
+                我整理了一份<strong>實戰策略手冊</strong>，幫助你：
+                <br>✔ 提升年化報酬率（不靠運氣）
+                <br>✔ 對抗通膨侵蝕
+                <br>✔ 有機會把退休時間提前 5～10 年
+            </div>
+            
+            <p style="color: #388e3c; font-weight: bold; font-size: 18px;">👉 輸入 Email，馬上免費領取 PDF：</p>
+            
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdCxGVWCMCl7xEAGPZipJM4o4MUyJpyl3n0v6-HHDy6P4leXA/viewform?embedded=true" 
+                    width="100%" height="350" frameborder="0" style="border-radius: 8px; background: #fff; margin-top: 10px;">
+                載入中…
+            </iframe>
+        </div>
+
     </div>
 
     <script>
@@ -234,10 +255,14 @@
                 tbody.insertAdjacentHTML('beforeend', row);
             }
             
+            // 顯示所有結果區塊
             document.getElementById('resultTable').style.display = 'table';
             document.getElementById('chartBox1').style.display = 'block';
             document.getElementById('chartBox2').style.display = 'block';
             document.getElementById('summaryBox').style.display = 'block';
+            
+            // 🔥 顯示引流表單區塊
+            document.getElementById('grokFunnelBox').style.display = 'block';
 
             const lastTotal = totalData[totalData.length - 1];
             const realPower = (lastTotal * annualReturn / 12) / Math.pow(1 + inflationRate, years);
@@ -246,10 +271,10 @@
                 ${achievedTargetYear !== -1 ? `🎯 <strong>目標達成：</strong> 預計在 <span class="success-text">第 ${achievedTargetYear} 年</span> 達成每月被動收入目標！<br>` : '🎯 <strong>目標狀態：</strong> 目前條件在試算年限內尚未達標。<br>'}
                 ${achievedFreedomYear !== -1 ? `🕊️ <strong>財務自由：</strong> 您的被動收入在 <span class="success-text">第 ${achievedFreedomYear} 年</span> 正式超越通膨後生活費。<br>` : '🕊️ <strong>自由狀態：</strong> 目前被動收入仍不足以覆蓋通膨後的生活開支。<br>'}
                 <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
-                ⚠️ <strong>CFO 真實購買力警訊：</strong><br>
-                第 ${years} 年末的帳面月收入雖為 ${passiveIncomeData[passiveIncomeData.length-1]} 萬，但其真實價值僅相當於現在的 <strong><span class="warning-text">${realPower.toFixed(2)} 萬</span></strong>。<br>
+                ⚠️ <strong>真實購買力警訊：</strong><br>
+                第 ${years} 年末的帳面月收入雖為 ${passiveIncomeData[passiveIncomeData.length-1]} 萬，但受通膨影響，其實質購買力僅相當於現在的 <strong><span class="warning-text">${realPower.toFixed(2)} 萬</span></strong>。<br>
                 <div style="text-align:center;">
-                    <a href="https://vocus.cc/salon/EnPassive" target="_blank" class="vocus-btn">📖 前往 En Passive 方格子沙龍：看實戰案例</a>
+                    <a href="https://vocus.cc/salon/EnPassive" target="_blank" class="vocus-btn">📖 前往 En Passive 方格子沙龍：看抗通膨實戰</a>
                 </div>
             `;
 
@@ -273,7 +298,7 @@
                     { label: '月被動收入', data: passiveIncomeData, borderColor: '#16a34a', borderWidth: 3, tension: 0.3 },
                     { label: '通膨後生活費', data: futureCostData, borderColor: '#dc2626', borderDash: [5, 5], tension: 0.3 },
                     { label: '🎯 設定目標', data: new Array(labels.length).fill(target), borderColor: '#f59e0b', borderDash: [2, 2], pointRadius: 0 }
-                ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: '現金流黃金交叉對決 (每月)' } } }
+                ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: '現金流對決 (每月/萬)' } } }
             });
         }
 
