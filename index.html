@@ -143,7 +143,9 @@
     </style>
 </head>
 <body>
-
+    <div style="background-color: #f8d7da; color: #721c24; text-align: center; padding: 8px 15px; font-size: 13px; font-weight: bold; border-bottom: 1px solid #f5c6cb;">
+    ⚠️ © 2026 EnPassive 理性財務自由工程。保留所有權利。本工具為原創作品，禁止商業複製、轉售或用於 AI 訓練。違者必依台灣著作權法追訴。
+    </div>
     <div class="container">
         <div class="header">
             <h2>📈 理性財務自由 - 複利與通膨綜合試算</h2>
@@ -263,9 +265,6 @@
             document.getElementById('chartBox1').style.display = 'block';
             document.getElementById('chartBox2').style.display = 'block';
             document.getElementById('summaryBox').style.display = 'block';
-            
-            // 🔥 顯示引流表單區塊
-            document.getElementById('grokFunnelBox').style.display = 'block';
 
             const lastTotal = totalData[totalData.length - 1];
             const realPower = (lastTotal * annualReturn / 12) / Math.pow(1 + inflationRate, years);
@@ -289,7 +288,7 @@
             if (myGrowthChart) myGrowthChart.destroy();
             myGrowthChart = new Chart(ctx1, {
                 type: 'line', data: { labels, datasets: [
-                    { label: '累計投入(本金+現有)', data: principalData, borderColor: '#94a3b8', backgroundColor: 'rgba(148, 163, 184, 0.1)', fill: true, tension: 0.3 },
+                    { label: '累計投入(本金+現現有)', data: principalData, borderColor: '#94a3b8', backgroundColor: 'rgba(148, 163, 184, 0.1)', fill: true, tension: 0.3 },
                     { label: '資產總額', data: totalData, borderColor: '#1e3a8a', backgroundColor: 'rgba(30, 58, 138, 0.1)', fill: true, tension: 0.3 }
                 ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: '資產成長雪球 (單位:萬)' } } }
             });
