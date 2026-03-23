@@ -195,9 +195,24 @@
                 <a href="https://vocus.cc/pay/donate/@EnPassive?donateSourceType=exclusiveLink" target="_blank" style="color: #ea580c; text-decoration: underline; font-weight: bold;">👉 點我支持 EnPassive 的研究計畫</a>
             </div>
 
+            <div style="margin-top: 20px;">
+                <a href="https://vocus.cc/article/69bea489fd89780001df06dd" target="_blank" style="font-size: 13px; color: #3b82f6; text-decoration: none;">🔍 看看我如何優化配置並提前 10 年退休</a>
+            </div>
         </div>
 
     </div>
+
+    <footer style="margin-top: 50px; padding: 20px; text-align: center; font-size: 12px; color: #6c757d; border-top: 1px solid #eaeaea; line-height: 1.8;">
+        
+        <div style="margin-bottom: 12px;">
+            ✉️ <b>合作與回饋：</b> 
+            <a href="mailto:passiveen@gmail.com" style="color: #3b82f6; text-decoration: none;">passiveen@gmail.com</a>
+        </div>
+
+        © 2026 <strong>EnPassive 理性財務自由工程</strong>。保留所有權利。<br>
+        本工具為個人原創作品，禁止商業複製、轉售、二次開發或用於 AI 訓練資料集。<br>
+        違者將依台灣著作權法追訴（重製權 + 公開傳輸權）。
+    </footer>
 
     <script>
         // 🛡️ 防盜功能
@@ -285,7 +300,7 @@
             if (myGrowthChart) myGrowthChart.destroy();
             myGrowthChart = new Chart(ctx1, {
                 type: 'line', data: { labels, datasets: [
-                    { label: '累計投入(本金+現現有)', data: principalData, borderColor: '#94a3b8', backgroundColor: 'rgba(148, 163, 184, 0.1)', fill: true, tension: 0.3 },
+                    { label: '累計投入(本金+現有)', data: principalData, borderColor: '#94a3b8', backgroundColor: 'rgba(148, 163, 184, 0.1)', fill: true, tension: 0.3 },
                     { label: '資產總額', data: totalData, borderColor: '#1e3a8a', backgroundColor: 'rgba(30, 58, 138, 0.1)', fill: true, tension: 0.3 }
                 ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { title: { display: true, text: '資產成長雪球 (單位:萬)' } } }
             });
